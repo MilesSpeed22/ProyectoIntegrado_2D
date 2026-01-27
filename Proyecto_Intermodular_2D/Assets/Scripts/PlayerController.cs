@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float health;
     bool canAttack;
     bool isFacingRight;
 
@@ -12,10 +14,16 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D PlayerRb;
     Vector2 moveInput;
     PlayerInput input;
+
+    [Header ("Prototype")]
+    public GameObject attackPoint;
+    [SerializeField] float attackCooldown;
+    [SerializeField] Transform respawn;
     private void Awake()
     {
        PlayerRb = GetComponent<Rigidbody2D>();
-       input = GetComponent<PlayerInput>(); 
+       input = GetComponent<PlayerInput>();
+       canAttack = true;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +48,31 @@ public class PlayerController : MonoBehaviour
         PlayerRb.linearVelocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
     }
 
+    IEnumerator Attack()
+    {
+        canAttack = false;
+
+        attackPoint.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        attackPoint.SetActive(false);
+
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            health -= 1f;
+
+            if (health <= 0)
+            {
+                gameObject.transform.position = respawn.position;
+                health = 2f;
+            }
+        }
+    }
 
     #region Input Methods
 
@@ -49,9 +82,12 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
-    private void onAttack()
+    public void onAttack(InputAction.CallbackContext context)
     {
-
+        if (context.performed)
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     #endregion
