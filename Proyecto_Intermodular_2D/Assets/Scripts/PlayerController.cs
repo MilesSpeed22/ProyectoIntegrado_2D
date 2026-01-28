@@ -60,9 +60,9 @@ public class PlayerController : MonoBehaviour
         canAttack = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("EnemyAttack"))
         {
             health -= 1f;
 
