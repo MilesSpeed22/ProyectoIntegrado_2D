@@ -9,10 +9,10 @@ public class EnemySpawn : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InvokeRepeating(nameof(CannonShoot), firstSpawn, repeatSpawn);
+        InvokeRepeating(nameof(EnemySpawner), firstSpawn, repeatSpawn);
     }
 
-    void CannonShoot()
+    void EnemySpawner()
     {
         Instantiate(enemy, spawnPoint.position, Quaternion.identity);
     }
