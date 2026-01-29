@@ -5,14 +5,14 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float health = 2f;
-    [SerializeField] GameObject player;
     [SerializeField] bool canAttack;
     [SerializeField] GameObject attackPoint;
-    [SerializeField] bool playerDetect;
+    
 
     private void Awake()
     {
         canAttack = true;
+        EnemyMovement enemyMovement = new EnemyMovement();
     }
     void Start()
     {
@@ -22,10 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerDetect)
-        {
-            FollowPlayer();
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -35,23 +32,18 @@ public class EnemyBehaviour : MonoBehaviour
             StartCoroutine(Attack());
         }
     }
-   // private void OnTriggerEnter2D(Collider2D other)
-   // {
-    //    if (other.gameObject.CompareTag("Attack"))
-    //    {
-     //       health -= 1f;
-//
-     //       if (health <= 0)
-    //        {
-    //            gameObject.SetActive(false);
-    //        }
-    //    }
-    //}
-    void FollowPlayer()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-    }
+        if (other.gameObject.CompareTag("Attack"))
+        {
+            health -= 1f;
 
+            if (health <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
     IEnumerator Attack()
     {
         canAttack = false;
@@ -64,20 +56,5 @@ public class EnemyBehaviour : MonoBehaviour
         canAttack = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerDetect = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerDetect = false;
-        }
-    }
-
+    
 }
