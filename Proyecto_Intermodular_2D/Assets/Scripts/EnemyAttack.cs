@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [Header("Attack Settings")]
     [SerializeField] GameObject attackPoint;
-    [SerializeField] float cooldown = 1f; // tiempo entre ataques
-
-    [Header("Health")]
-    [SerializeField] float health = 2f;
+    [SerializeField] float cooldown = 1f;
+    [SerializeField] float health;
 
     [HideInInspector] public bool canAttack;
     [HideInInspector] public bool isAttacking;
@@ -24,11 +21,11 @@ public class EnemyAttack : MonoBehaviour
     IEnumerator Attack()
     {
         isAttacking = true;
-        canAttack = false; // evita reiniciar ataque mientras el cooldown no termina
+        canAttack = false;
 
         // Golpe activo
         attackPoint.SetActive(true);
-        yield return new WaitForSeconds(0.1f); // duración del golpe
+        yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
 
         // Espera cooldown
@@ -41,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.CompareTag("Attack"))
         {
-            health -= 1f;
+            health--;
             if (health <= 0)
                 gameObject.SetActive(false);
         }

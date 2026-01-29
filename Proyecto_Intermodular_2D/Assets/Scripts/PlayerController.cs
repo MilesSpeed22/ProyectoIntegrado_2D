@@ -57,14 +57,14 @@ public class PlayerController : MonoBehaviour
         attackPoint.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
-        canAttack = true;
+        canAttack = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("EnemyAttack"))
         {
-            health -= 1f;
+            health--;
 
             if (health <= 0)
             {
