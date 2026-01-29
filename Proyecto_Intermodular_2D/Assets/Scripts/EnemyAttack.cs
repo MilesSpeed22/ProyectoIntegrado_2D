@@ -6,9 +6,8 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] GameObject attackPoint;
     [SerializeField] float cooldown = 1f;
     [SerializeField] float health;
-
-    [HideInInspector] public bool canAttack;
-    [HideInInspector] public bool isAttacking;
+    public bool canAttack;
+    public bool isAttacking;
 
     void Update()
     {
@@ -22,22 +21,22 @@ public class EnemyAttack : MonoBehaviour
     {
         isAttacking = true;
         canAttack = false;
-<<<<<<< Updated upstream
 
-        // Golpe activo
+
+
         attackPoint.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
 
-        // Espera cooldown
+
         yield return new WaitForSeconds(cooldown);
 
-=======
+
         attackPoint.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
         yield return new WaitForSeconds(cooldown);
->>>>>>> Stashed changes
+
         isAttacking = false;
     }
 
