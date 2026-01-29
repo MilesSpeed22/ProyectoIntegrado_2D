@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
 
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(0.5f);
         canAttack = true;
     }
 
