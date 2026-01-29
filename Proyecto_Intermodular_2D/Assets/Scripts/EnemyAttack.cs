@@ -22,6 +22,7 @@ public class EnemyAttack : MonoBehaviour
     {
         isAttacking = true;
         canAttack = false;
+<<<<<<< Updated upstream
 
         // Golpe activo
         attackPoint.SetActive(true);
@@ -31,6 +32,12 @@ public class EnemyAttack : MonoBehaviour
         // Espera cooldown
         yield return new WaitForSeconds(cooldown);
 
+=======
+        attackPoint.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        attackPoint.SetActive(false);
+        yield return new WaitForSeconds(cooldown);
+>>>>>>> Stashed changes
         isAttacking = false;
     }
 
