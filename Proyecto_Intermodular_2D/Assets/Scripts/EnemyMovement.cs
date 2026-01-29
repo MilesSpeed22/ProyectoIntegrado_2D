@@ -1,36 +1,51 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] bool playerDetect;
-    [SerializeField] GameObject player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Movement Settings")]
+    [SerializeField] float speed = 2f;
+    [SerializeField] float attackRange = 1.2f;
 
-    // Update is called once per frame
+    [Header("References")]
+    [SerializeField] GameObject player;
+    [SerializeField] EnemyAttack enemyAttack;
+
+    bool playerDetect;
+
     void Update()
     {
-        if (playerDetect)
+        if (!playerDetect) return;
+
+        // Calcula distancia al jugador
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+
+        if (distance > attackRange)
         {
+            // Alejado → se mueve hacia el jugador
             FollowPlayer();
+            enemyAttack.canAttack = false;
+        }
+        else
+        {
+            // Dentro del rango → permite atacar
+            if (!enemyAttack.isAttacking)
+                enemyAttack.canAttack = true;
         }
     }
 
-    public void FollowPlayer()
+    void FollowPlayer()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(
+            transform.position,
+            player.transform.position,
+            speed * Time.deltaTime
+        );
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerDetect = true;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -38,6 +53,7 @@ public class EnemyMovement : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerDetect = false;
+            enemyAttack.canAttack = false;
         }
     }
 }
