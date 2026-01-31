@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] float health;
     bool canAttack;
     bool isFacingRight;
 
@@ -58,20 +57,6 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         canAttack = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("EnemyAttack"))
-        {
-            health--;
-
-            if (health <= 0)
-            {
-                gameObject.transform.position = respawn.position;
-                health = 2f;
-            }
-        }
     }
 
     #region Input Methods

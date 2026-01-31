@@ -1,8 +1,24 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public GameManager Instance;
+
+    public int maxPlayerHealth;
+    public int playerHealth;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            playerHealth = maxPlayerHealth;
+        }
+        else Destroy(gameObject);
+    }
     void Start()
     {
         
@@ -12,5 +28,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayerDamage(int damage)
+    {
+        playerHealth -= damage;
+        playerHealth = Mathf.Clamp(playerHealth, 0, maxPlayerHealth);
+
+        if (playerHealth <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
