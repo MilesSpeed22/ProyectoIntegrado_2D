@@ -3,10 +3,10 @@
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float speed = 2f;
-    [SerializeField] float attackRange = 1.2f;
+    [SerializeField] float attackRange;
     [SerializeField] GameObject player;
     [SerializeField] EnemyAttack enemyAttack;
-
+    [SerializeField] GameObject healthbar;
     bool playerDetect;
 
     void Update()
@@ -19,11 +19,13 @@ public class EnemyMovement : MonoBehaviour
         {
             FollowPlayer();
             enemyAttack.canAttack = false;
+            healthbar.SetActive(false);
         }
         else
         {
             if (!enemyAttack.isAttacking)
                 enemyAttack.canAttack = true;
+            healthbar.SetActive(true);
         }
     }
 
