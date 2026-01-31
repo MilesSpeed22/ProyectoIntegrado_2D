@@ -44,7 +44,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.CompareTag("Attack"))
         {
-            health--;
+            health -= 1;
             if (health <= 0)
                 gameObject.SetActive(false);
         }

@@ -6,8 +6,6 @@ public class GameManager : MonoBehaviour
 
     public GameManager Instance;
 
-    public int maxPlayerHealth;
-    public int playerHealth;
 
     private void Awake()
     {
@@ -15,7 +13,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            playerHealth = maxPlayerHealth;
         }
         else Destroy(gameObject);
     }
@@ -28,16 +25,5 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void PlayerDamage(int damage)
-    {
-        playerHealth -= damage;
-        playerHealth = Mathf.Clamp(playerHealth, 0, maxPlayerHealth);
-
-        if (playerHealth <= 0)
-        {
-            SceneManager.LoadScene(0);
-        }
     }
 }

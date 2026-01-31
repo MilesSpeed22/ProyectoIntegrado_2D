@@ -1,19 +1,27 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] RectField healthFill;
+    [SerializeField] float playerHealth;
+    [SerializeField] RectTransform healthFill;
     Vector3 originalScale;
+    GameManager gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         originalScale = healthFill.localScale;
     }
 
-    // Update is called once per frame
-    public void UIUpdate()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        float percent= (float)GameManager.Instance
+        if (other.gameObject.CompareTag("EnemyAttack"))
+        {
+            playerHealth -= 1;
+
+            if (playerHealth < 0) SceneManager.LoadScene(0);
+        }
     }
+
 }
