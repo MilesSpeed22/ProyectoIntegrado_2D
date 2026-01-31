@@ -4,24 +4,42 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float playerHealth;
+    [SerializeField] Transform respawnPoint;
+    [Header ("PlayerHealth")]
+    [SerializeField] float maxHealth;
+    float currentHealth;
+
+    [Header ("PlayerUI")]
     [SerializeField] RectTransform healthFill;
     Vector3 originalScale;
-    GameManager gameManager;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        currentHealth = maxHealth;
         originalScale = healthFill.localScale;
+        UpdateHealthBar();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("EnemyAttack"))
         {
-            playerHealth -= 1;
-
-            if (playerHealth < 0) SceneManager.LoadScene(0);
+            PlayerDamage(1);            
         }
     }
 
+    void PlayerDamage(float damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthBar();
+        if (currentHealth <= 0) transform.position = respawnPoint.position;
+    }
+
+    void UpdateHealthBar()
+    {
+        float percent = currentHealth / maxHealth;
+
+        healthFill.localScale = new Vector3(originalScale.x * percent, originalScale.y, originalScale.z);
+    }
 }

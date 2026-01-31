@@ -17,23 +17,20 @@ public class PlayerController : MonoBehaviour
     [Header ("Prototype")]
     public GameObject attackPoint;
     [SerializeField] float attackCooldown;
-    [SerializeField] Transform respawn;
     private void Awake()
     {
        PlayerRb = GetComponent<Rigidbody2D>();
        input = GetComponent<PlayerInput>();
        canAttack = true;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (moveInput.x > 0 && !isFacingRight) Flip();
+        //if (moveInput.x > 0 && !isFacingRight) transform.localScale.x = 1;
         //if (moveInput.x < 0 && isFacingRight) Flip();
     }
 
