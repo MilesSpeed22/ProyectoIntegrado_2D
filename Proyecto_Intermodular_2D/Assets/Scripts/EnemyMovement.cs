@@ -12,8 +12,14 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         if (!playerDetect) return;
+        
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
+
+        enemyAttack.canAttack = distance <= attackRange;
+
+        if (enemyAttack.isStunned) return;
+
 
         if (distance > attackRange)
         {
@@ -23,8 +29,6 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            if (!enemyAttack.isAttacking)
-                enemyAttack.canAttack = true;
             healthbar.SetActive(true);
         }
     }

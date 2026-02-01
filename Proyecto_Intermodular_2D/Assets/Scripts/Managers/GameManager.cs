@@ -16,14 +16,4 @@ public class GameManager : MonoBehaviour
         }
         else Destroy(gameObject);
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

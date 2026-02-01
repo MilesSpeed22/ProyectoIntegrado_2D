@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] RectTransform healthFill;
     Vector3 originalScale;
 
+    [SerializeField] EnemyAttack enemyAttack;
     void Start()
     {
         currentHealth = maxHealth;
@@ -21,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Attack"))
         {
+            Debug.Log("ENEMY HIT");
             EnemyDamage(1);
         }
     }
@@ -29,6 +31,9 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        enemyAttack.OnHit();
+
         UpdateHealthBar();
         if (currentHealth <= 0) gameObject.SetActive(false);
     }
