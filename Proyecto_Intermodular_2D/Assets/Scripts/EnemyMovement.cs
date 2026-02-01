@@ -6,7 +6,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] GameObject player;
     [SerializeField] EnemyAttack enemyAttack;
-    [SerializeField] GameObject healthbar;
+    [SerializeField] GameObject healthBar;
+    [SerializeField] float healthBarRange;
     bool playerDetect;
 
     void Update()
@@ -25,11 +26,12 @@ public class EnemyMovement : MonoBehaviour
         {
             FollowPlayer();
             enemyAttack.canAttack = false;
-            healthbar.SetActive(false);
+            healthBar.SetActive(false);
+
         }
         else
         {
-            healthbar.SetActive(true);
+            healthBar.SetActive(true);
         }
     }
 

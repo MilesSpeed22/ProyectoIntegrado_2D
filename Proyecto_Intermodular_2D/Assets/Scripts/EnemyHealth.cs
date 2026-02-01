@@ -22,7 +22,6 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Attack"))
         {
-            Debug.Log("ENEMY HIT");
             EnemyDamage(1);
         }
     }

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [Header ("PlayerHealth")]
     [SerializeField] float maxHealth;
     float currentHealth;
+    [SerializeField] float lives;
 
     [Header ("PlayerUI")]
     [SerializeField] RectTransform healthFill;

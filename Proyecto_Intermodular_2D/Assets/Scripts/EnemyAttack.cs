@@ -20,12 +20,6 @@ public class EnemyAttack : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
-
-        Debug.Log(
-        "canAttack: " + canAttack +
-        " | isStunned: " + isStunned +
-        " | isAttacking: " + isAttacking
-        );
     }
     IEnumerator Attack()
     {
