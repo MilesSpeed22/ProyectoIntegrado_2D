@@ -58,6 +58,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Ataque para cuando tenga animacion
+    //IEnumerator Attack()
+    //{
+     //   canAttack = false; //Quitar la posibilidad de atacar        
+      //  float actualSpeed = speed; //Guardamos la velocidad actual para devolverla luego
+      //  speed = 0; //velocidad 0 el personaje esta quieto
+      //  anim.SetTrigger("Attack");
+      //  yield return new WaitForSeconds(0.8f);
+    //Devolvemos velocidad y capacidad de ataque al jugador
+      //  speed = actualSpeed;
+       // canAttack = true;
+      //  yield return null;
+
+
+   // }
+
+
+
     #region Input Methods
 
 
