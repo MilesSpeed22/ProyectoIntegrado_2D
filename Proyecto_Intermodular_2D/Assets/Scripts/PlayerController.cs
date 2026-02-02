@@ -46,14 +46,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Attack()
     {
-        canAttack = false;
+        canAttack = true;
 
         attackPoint.SetActive(true);//Aqui animacion de pegar para luego
         yield return new WaitForSeconds(0.1f); 
         attackPoint.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
         
-        canAttack = true;
+        canAttack = false;
+
+
     }
 
     #region Input Methods
