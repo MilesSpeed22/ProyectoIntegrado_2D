@@ -8,7 +8,10 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("PlayerUI")]
     [SerializeField] RectTransform healthFill;
+    [SerializeField] GameObject healthBar;
     Vector3 originalScale;
+    [SerializeField] GameObject player;
+    [SerializeField] float barRange;
 
     [SerializeField] EnemyAttack enemyAttack;
     void Start()
@@ -16,6 +19,24 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         originalScale = healthFill.localScale;
         UpdateHealthBar();
+    }
+
+    private void Update()
+    {
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+
+        if (enemyAttack.isStunned) return;
+
+
+        if (distance > barRange)
+        {
+            healthBar.SetActive(false);
+
+        }
+        else
+        {
+            healthBar.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

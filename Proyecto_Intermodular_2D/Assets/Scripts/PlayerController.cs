@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         canAttack = false;
 
-        attackPoint.SetActive(true);//Aqui animacion de pegar
+        attackPoint.SetActive(true);//Aqui animacion de pegar para luego
         yield return new WaitForSeconds(0.1f); 
         attackPoint.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
