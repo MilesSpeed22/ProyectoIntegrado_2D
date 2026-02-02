@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour
     {
         canAttack = false;
 
-        attackPoint.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
+        attackPoint.SetActive(true);//Aqui animacion de pegar
+        yield return new WaitForSeconds(0.1f); 
         attackPoint.SetActive(false);
-
-        yield return new WaitForSeconds(0.5f);
-        canAttack = false;
+        yield return new WaitForSeconds(attackCooldown);
+        
+        canAttack = true;
     }
 
     #region Input Methods

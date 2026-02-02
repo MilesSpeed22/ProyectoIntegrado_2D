@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [Header ("PlayerHealth")]
     [SerializeField] float maxHealth;
     float currentHealth;
-    [SerializeField] float lives;
+    [SerializeField] int lives = 3;
 
     [Header ("PlayerUI")]
     [SerializeField] RectTransform healthFill;
@@ -34,7 +34,34 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
-        if (currentHealth <= 0) transform.position = respawnPoint.position;
+        if (currentHealth <= 0) Die();
+    }
+
+    void Die()
+    {
+        lives -= 1;
+
+        if (lives > 0)
+        {
+            Respawn();
+        }
+        else
+        {
+            GameOver();
+        }
+
+    }
+
+    private void Respawn()
+    {
+        transform.position = respawnPoint.position;
+        currentHealth = maxHealth;
+        UpdateHealthBar();
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene(0);
     }
 
     void UpdateHealthBar()

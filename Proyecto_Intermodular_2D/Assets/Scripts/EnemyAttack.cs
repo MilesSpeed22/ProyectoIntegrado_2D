@@ -24,6 +24,7 @@ public class EnemyAttack : MonoBehaviour
     IEnumerator Attack()
     {
         isAttacking = true;
+        yield return new WaitForSeconds(cooldown);
         attackPoint.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         attackPoint.SetActive(false);
