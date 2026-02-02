@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 405deeba8a7220e41b06e05148be8c70
+guid: 92d89c2b7ab8c6e439c326cc12ffea4d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1955448553306655712
-    second: Background_0
+      213: -8710856236657140196
+    second: skyblock__0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_0
+      name: skyblock__0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 13457
-        height: 1080
+        width: 321
+        height: 343
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 024fa93b6e9dcd4e0800000000000000
-      internalID: -1955448553306655712
+      spriteID: c1e1e84a762dc1780800000000000000
+      internalID: -8710856236657140196
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Background_0: -1955448553306655712
+      skyblock__0: -8710856236657140196
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
