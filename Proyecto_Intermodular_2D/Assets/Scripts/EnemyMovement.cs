@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
         if (!playerDetect) return;
         
 
-        float distance = Vector2.Distance(playerRange.transform.position, player.transform.position);
+        float distance = Vector2.Distance(transform.position, player.transform.position);
 
         enemyAttack.canAttack = distance <= attackRange;
 
