@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         canAttack = true;
 
-        attackPoint.SetActive(true);//Aqui animacion de pegar para luego
+        attackPoint.SetActive(true);
         yield return new WaitForSeconds(0.1f); 
         attackPoint.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
@@ -61,12 +61,11 @@ public class PlayerController : MonoBehaviour
     //Ataque para cuando tenga animacion
     //IEnumerator Attack()
     //{
-     //   canAttack = false; //Quitar la posibilidad de atacar        
-      //  float actualSpeed = speed; //Guardamos la velocidad actual para devolverla luego
+     //   canAttack = false;      
+      //  float actualSpeed = speed;
       //  speed = 0; //velocidad 0 el personaje esta quieto
       //  anim.SetTrigger("Attack");
       //  yield return new WaitForSeconds(0.8f);
-    //Devolvemos velocidad y capacidad de ataque al jugador
       //  speed = actualSpeed;
        // canAttack = true;
       //  yield return null;

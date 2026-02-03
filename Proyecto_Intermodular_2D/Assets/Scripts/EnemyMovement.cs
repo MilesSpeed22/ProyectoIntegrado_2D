@@ -5,6 +5,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float speed = 2f;
     [SerializeField] float attackRange;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject enemyBody;
     [SerializeField] EnemyAttack enemyAttack;
     [SerializeField] Transform playerRange;
     bool playerDetect;
@@ -14,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
         if (!playerDetect) return;
         
 
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        float distance = Vector2.Distance(enemyBody.transform.position, player.transform.position);
 
         enemyAttack.canAttack = distance <= attackRange;
 
@@ -31,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
 
     void FollowPlayer()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        enemyBody.transform.position = Vector2.MoveTowards(enemyBody.transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
