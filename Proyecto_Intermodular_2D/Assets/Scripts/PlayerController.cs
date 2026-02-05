@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,25 +14,27 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D PlayerRb;
     Vector2 moveInput;
     PlayerInput input;
-
-    [Header ("Prototype")]
     public GameObject attackPoint;
     [SerializeField] float attackCooldown;
+    Animator anim;
+    Rigidbody2D playerRb;
     private void Awake()
     {
        PlayerRb = GetComponent<Rigidbody2D>();
        input = GetComponent<PlayerInput>();
        canAttack = true;
+       anim = GetComponent<Animator>();
     }
     void Start()
     {
-        
+        isFacingRight = true;
     }
 
     void Update()
     {
-        //if (moveInput.x > 0 && !isFacingRight) transform.localScale.x = 1;
-        //if (moveInput.x < 0 && isFacingRight) Flip();
+        if (moveInput.x > 0 && !isFacingRight) Flip();
+        if (moveInput.x < 0 && isFacingRight) Flip();
+        AnimationManagement();
     }
 
     private void FixedUpdate()
@@ -43,37 +46,26 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRb.linearVelocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
     }
-
-    IEnumerator Attack()
+   IEnumerator Attack()
     {
+        canAttack = false;      
+        float actualSpeed = speed;
+        speed = 0; //velocidad 0 el personaje esta quieto
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.8f);
+        speed = actualSpeed;
         canAttack = true;
+        yield return null;
 
-        attackPoint.SetActive(true);
-        yield return new WaitForSeconds(0.1f); 
-        attackPoint.SetActive(false);
-        yield return new WaitForSeconds(attackCooldown);
-        
-        canAttack = false;
+     }
 
-
+    void Flip()
+    {
+        Vector3 currentScale = transform.localScale;
+        currentScale.x *= -1;
+        transform.localScale = currentScale;
+        isFacingRight = !isFacingRight;
     }
-
-    //Ataque para cuando tenga animacion
-    //IEnumerator Attack()
-    //{
-     //   canAttack = false;      
-      //  float actualSpeed = speed;
-      //  speed = 0; //velocidad 0 el personaje esta quieto
-      //  anim.SetTrigger("Attack");
-      //  yield return new WaitForSeconds(0.8f);
-      //  speed = actualSpeed;
-       // canAttack = true;
-      //  yield return null;
-
-
-   // }
-
-
 
     #region Input Methods
 
@@ -89,6 +81,12 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
+    }
+
+    public void AnimationManagement()
+    {
+        if (moveInput.x != 0) anim.SetBool("Walk", true);
+        else anim.SetBool("Walk", false);
     }
 
     #endregion
