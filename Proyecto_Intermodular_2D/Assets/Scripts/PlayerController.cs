@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         canAttack = false;      
         float actualSpeed = speed;
-        speed = 0; //velocidad 0 el personaje esta quieto
+        speed = 0;
         anim.SetTrigger("Attack");
         yield return new WaitForSeconds(0.8f);
         speed = actualSpeed;
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public void onAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canAttack)
         {
             StartCoroutine(Attack());
         }
