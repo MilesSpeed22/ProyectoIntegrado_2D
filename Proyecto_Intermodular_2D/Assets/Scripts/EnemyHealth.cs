@@ -12,8 +12,14 @@ public class EnemyHealth : MonoBehaviour
     Vector3 originalScale;
     [SerializeField] GameObject player;
     [SerializeField] float barRange;
+    Animator anim;
 
     [SerializeField] EnemyAttack enemyAttack;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Start()
     {
         currentHealth = maxHealth;
@@ -44,6 +50,7 @@ public class EnemyHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Attack"))
         {
             EnemyDamage(1);
+            anim.SetBool("Damage", true);
         }
     }
 
@@ -55,8 +62,12 @@ public class EnemyHealth : MonoBehaviour
         enemyAttack.OnHit();
 
         UpdateHealthBar();
-        if (currentHealth <= 0) gameObject.SetActive(false);
-    }
+        if (currentHealth <= 0)
+        {
+            
+            gameObject.SetActive(false);
+        }
+    }   
 
     void UpdateHealthBar()
     {

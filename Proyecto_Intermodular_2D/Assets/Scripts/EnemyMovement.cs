@@ -8,8 +8,13 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameObject enemyBody;
     [SerializeField] EnemyAttack enemyAttack;
     [SerializeField] Transform playerRange;
+    Animator anim;
     bool playerDetect;
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         if (!playerDetect) return;
@@ -33,6 +38,7 @@ public class EnemyMovement : MonoBehaviour
     void FollowPlayer()
     {
         enemyBody.transform.position = Vector2.MoveTowards(enemyBody.transform.position, player.transform.position, speed * Time.deltaTime);
+        anim.SetBool("Walk", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
