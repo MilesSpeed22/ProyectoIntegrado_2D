@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         float actualSpeed = speed;
         speed = 0;
         anim.SetTrigger("Attack");
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(attackCooldown);
         speed = actualSpeed;
         canAttack = true;
         yield return null;
