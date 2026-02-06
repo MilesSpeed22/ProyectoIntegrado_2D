@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void AnimationManagement()
     {
-        if (moveInput.x != 0) anim.SetBool("Walk", true);
+        if (moveInput.x != 0 || moveInput.y != 0) anim.SetBool("Walk", true);
         else anim.SetBool("Walk", false);
     }
 

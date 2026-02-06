@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
     void FollowPlayer()
     {
         enemyBody.transform.position = Vector2.MoveTowards(enemyBody.transform.position, player.transform.position, speed * Time.deltaTime);
-        //anim.SetBool("Walk", true);
+        anim.SetBool("Walk", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
