@@ -11,6 +11,10 @@ public class EnemyAttack : MonoBehaviour
     Animator anim;
     [SerializeField] float hitStunTime = 0.3f;
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         if (isStunned) return;
@@ -25,8 +29,11 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = true;
         canAttack = false;
         anim.SetTrigger("Attack");
-
+        yield return null;
+        float attackDuration = anim.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(attackDuration);
         yield return new WaitForSeconds(cooldown);
+
         isAttacking = false;
         canAttack = true;
     }
@@ -47,10 +54,8 @@ public class EnemyAttack : MonoBehaviour
 
     IEnumerator HitStun()
     {
-
-        anim.SetTrigger("Damage");
         yield return new WaitForSeconds(hitStunTime);
         isStunned = false;
-
+        canAttack = true;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -50,7 +51,7 @@ public class EnemyHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Attack"))
         {
             EnemyDamage(1);
-            anim.SetBool("Damage", true);
+            anim.SetTrigger("Damage");
         }
     }
 
@@ -64,10 +65,20 @@ public class EnemyHealth : MonoBehaviour
         UpdateHealthBar();
         if (currentHealth <= 0)
         {
-            
-            gameObject.SetActive(false);
+            StartCoroutine(Die());
         }
     }   
+
+    IEnumerator Die()
+    {
+        enemyAttack.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        anim.SetTrigger("Death");
+        yield return null;
+        float deathDuration = anim.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(deathDuration);
+        gameObject.SetActive(false);
+    }
 
     void UpdateHealthBar()
     {

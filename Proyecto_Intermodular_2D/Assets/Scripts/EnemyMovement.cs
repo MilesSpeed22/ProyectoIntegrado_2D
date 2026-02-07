@@ -8,37 +8,48 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameObject enemyBody;
     [SerializeField] EnemyAttack enemyAttack;
     [SerializeField] Transform playerRange;
-    Animator anim;
     bool playerDetect;
+    [SerializeField] Animator anim;
+    public bool isFacingRight = true;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+
     }
     void Update()
     {
-        if (!playerDetect) return;
-        
+        if (!playerDetect)
+        {
+            anim.SetBool("Walk", false);
+            return;
+        }
+
+        if (enemyAttack.isStunned)
+        {
+            anim.SetBool("Walk", false);
+            return;
+        }
 
         float distance = Vector2.Distance(enemyBody.transform.position, player.transform.position);
 
         enemyAttack.canAttack = distance <= attackRange;
 
-        if (enemyAttack.isStunned) return;
+        float direction = player.transform.position.x - enemyBody.transform.position.x;
 
+        if (direction > 0 && isFacingRight) Flip();
+        else if (direction < 0 && !isFacingRight) Flip();
 
         if (distance > attackRange)
         {
             FollowPlayer();
-            enemyAttack.canAttack = false;
-
+            anim.SetBool("Walk", true);
         }
+        else anim.SetBool("Walk", false);
     }
 
     void FollowPlayer()
     {
         enemyBody.transform.position = Vector2.MoveTowards(enemyBody.transform.position, player.transform.position, speed * Time.deltaTime);
-        anim.SetBool("Walk", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,5 +65,14 @@ public class EnemyMovement : MonoBehaviour
             playerDetect = false;
             enemyAttack.canAttack = false;
         }
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+
+        Vector3 scale = enemyBody.transform.localScale;
+        scale.x *= -1;
+        enemyBody.transform.localScale = scale;
     }
 }
