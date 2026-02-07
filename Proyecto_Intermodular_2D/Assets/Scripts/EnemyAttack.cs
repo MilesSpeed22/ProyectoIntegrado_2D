@@ -48,7 +48,7 @@ public class EnemyAttack : MonoBehaviour
     IEnumerator HitStun()
     {
 
-        //animacion pa luego
+        anim.SetTrigger("Damage");
         yield return new WaitForSeconds(hitStunTime);
         isStunned = false;
 

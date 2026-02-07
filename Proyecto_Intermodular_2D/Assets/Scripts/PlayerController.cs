@@ -48,16 +48,15 @@ public class PlayerController : MonoBehaviour
     }
    IEnumerator Attack()
     {
-        canAttack = false;      
+        canAttack = false;
         float actualSpeed = speed;
         speed = 0;
         anim.SetTrigger("Attack");
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(0.8f);
         speed = actualSpeed;
         canAttack = true;
         yield return null;
-
-     }
+    }
 
     void Flip()
     {
@@ -67,6 +66,12 @@ public class PlayerController : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
+    public void AnimationManagement()
+    {
+        if (moveInput.x != 0 || moveInput.y != 0) anim.SetBool("Walk", true);
+        else anim.SetBool("Walk", false);
+    }
+
     #region Input Methods
 
 
@@ -74,20 +79,9 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
-
     public void onAttack(InputAction.CallbackContext context)
     {
-        if (context.performed && canAttack)
-        {
-            StartCoroutine(Attack());
-        }
+        if (context.performed && canAttack) StartCoroutine(Attack());
     }
-
-    public void AnimationManagement()
-    {
-        if (moveInput.x != 0 || moveInput.y != 0) anim.SetBool("Walk", true);
-        else anim.SetBool("Walk", false);
-    }
-
     #endregion
 }
