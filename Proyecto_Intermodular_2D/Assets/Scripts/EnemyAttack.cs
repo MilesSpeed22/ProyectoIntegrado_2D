@@ -28,6 +28,7 @@ public class EnemyAttack : MonoBehaviour
     {
         isAttacking = true;
         canAttack = false;
+        yield return new WaitForSeconds(cooldown);
         anim.SetTrigger("Attack");
         yield return null;
         float attackDuration = anim.GetCurrentAnimatorStateInfo(0).length;

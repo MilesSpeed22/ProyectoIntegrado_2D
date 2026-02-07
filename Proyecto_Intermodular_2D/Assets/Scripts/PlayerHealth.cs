@@ -9,11 +9,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float maxHealth;
     float currentHealth;
     [SerializeField] int lives = 3;
+    Animator anim;
 
     [Header ("PlayerUI")]
     [SerializeField] RectTransform healthFill;
     Vector3 originalScale;
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Start()
     {
         currentHealth = maxHealth;
@@ -31,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDamage(float damage)
     {
+        anim.SetTrigger("Damage");
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
