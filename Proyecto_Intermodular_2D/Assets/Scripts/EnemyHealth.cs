@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     Vector3 originalScale;
     [SerializeField] GameObject player;
     [SerializeField] float barRange;
-    Animator anim;
+    [SerializeField] Animator anim;
 
     [SerializeField] EnemyAttack enemyAttack;
 
@@ -73,10 +73,12 @@ public class EnemyHealth : MonoBehaviour
     {
         enemyAttack.enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        anim.ResetTrigger("Attack");
+        anim.ResetTrigger("Damage");
+        anim.SetBool("Walk", false);
         anim.SetTrigger("Death");
-        yield return null;
-        float deathDuration = anim.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(deathDuration);
+        Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Death"));
+        yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }
 

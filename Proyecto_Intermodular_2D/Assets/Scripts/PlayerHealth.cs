@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] Transform respawnPoint;
+    [SerializeField] public Transform respawnPoint;
     [Header ("PlayerHealth")]
     [SerializeField] float maxHealth;
     float currentHealth;
@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void GameOver()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(5);
     }
 
     void UpdateHealthBar()
@@ -75,5 +75,10 @@ public class PlayerHealth : MonoBehaviour
         float percent = currentHealth / maxHealth;
 
         healthFill.localScale = new Vector3(originalScale.x * percent, originalScale.y, originalScale.z);
+    }
+
+    public void SetRespawnPoint(Transform newRespawnPoint)
+    {
+        respawnPoint = newRespawnPoint;
     }
 }
