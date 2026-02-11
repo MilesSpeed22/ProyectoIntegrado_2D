@@ -66,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
         UpdateHealthBar();
         if (currentHealth <= 0)
         {
+            AudioManager.Instance.PlaySFX(2);
             StartCoroutine(Die());
         }
     }   
