@@ -57,6 +57,7 @@ public class EnemyHealth : MonoBehaviour
 
     void EnemyDamage(float damage)
     {
+        AudioManager.Instance.PlaySFX(0);
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
@@ -77,7 +78,6 @@ public class EnemyHealth : MonoBehaviour
         anim.ResetTrigger("Damage");
         anim.SetBool("Walk", false);
         anim.SetTrigger("Death");
-        Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Death"));
         yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }

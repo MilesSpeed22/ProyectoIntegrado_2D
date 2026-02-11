@@ -37,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
     void PlayerDamage(float damage)
     {
         anim.SetTrigger("Damage");
+        AudioManager.Instance.PlaySFX(1);
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
