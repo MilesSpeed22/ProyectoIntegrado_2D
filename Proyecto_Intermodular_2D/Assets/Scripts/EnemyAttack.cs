@@ -30,6 +30,7 @@ public class EnemyAttack : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(cooldown);
         anim.SetTrigger("Attack");
+        AudioManager.Instance.PlaySFX(3);
         yield return null;
         float attackDuration = anim.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(attackDuration);
@@ -48,6 +49,7 @@ public class EnemyAttack : MonoBehaviour
 
         StopAllCoroutines();
         anim.SetTrigger("Damage");
+        AudioManager.Instance.PlaySFX(4);
 
         StartCoroutine(HitStun());
     }

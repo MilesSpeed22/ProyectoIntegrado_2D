@@ -79,6 +79,7 @@ public class EnemyHealth : MonoBehaviour
         anim.ResetTrigger("Damage");
         anim.SetBool("Walk", false);
         anim.SetTrigger("Death");
+        AudioManager.Instance.PlaySFX(5);
         yield return new WaitForSeconds(1.5f);
         gameObject.SetActive(false);
     }

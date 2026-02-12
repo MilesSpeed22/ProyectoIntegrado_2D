@@ -76,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator GameOver()
     {
         anim.SetTrigger("Death");
+        AudioManager.Instance.PlaySFX(6);
         yield return new WaitForSeconds(0.8f);
         SceneManager.LoadScene(4);
     }
@@ -90,5 +91,11 @@ public class PlayerHealth : MonoBehaviour
     public void SetRespawnPoint(Transform newRespawnPoint)
     {
         respawnPoint = newRespawnPoint;
+    }
+
+    public void RestoreFullHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthBar();
     }
 }

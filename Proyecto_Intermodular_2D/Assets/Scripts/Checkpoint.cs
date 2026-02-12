@@ -13,5 +13,6 @@ public class Checkpoint : MonoBehaviour
         if (playerHealth == null ) return;
 
         playerHealth.SetRespawnPoint(transform);
+        playerHealth.RestoreFullHealth();
     }
 }
