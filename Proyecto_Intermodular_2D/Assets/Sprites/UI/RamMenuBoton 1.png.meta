@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 61531326e9b11fd43b4fd240529cd4e0
+guid: d713205a0023c064b9310c58b084e964
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3383043384481080439
-    second: bestbuy_0
+      213: -6349374353884367416
+    second: RamMenuBoton 1_0
+  - first:
+      213: -2938162724128965653
+    second: RamMenuBoton 1_1
+  - first:
+      213: -6174718350065826824
+    second: RamMenuBoton 1_2
+  - first:
+      213: -5244578689733577702
+    second: RamMenuBoton 1_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,23 +148,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bestbuy_0
+      name: RamMenuBoton 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 24
-        width: 883
-        height: 610
+        x: 113
+        y: 892
+        width: 885
+        height: 195
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 774eab7b80cf2fe20800000000000000
-      internalID: 3383043384481080439
+      spriteID: 8c53fb26aad72e7a0800000000000000
+      internalID: -6349374353884367416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RamMenuBoton 1_1
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 574
+        width: 884
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bebbff7c19c8937d0800000000000000
+      internalID: -2938162724128965653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RamMenuBoton 1_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 296
+        width: 884
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f38d3c206efe4aa0800000000000000
+      internalID: -6174718350065826824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RamMenuBoton 1_3
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 32
+        width: 884
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a14b8d9f7738737b0800000000000000
+      internalID: -5244578689733577702
       vertices: []
       indices: 
       edges: []
@@ -164,7 +239,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 850e2027579712541aa6361fd34e557d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +249,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bestbuy_0: 3383043384481080439
+      RamMenuBoton 1_0: -6349374353884367416
+      RamMenuBoton 1_1: -2938162724128965653
+      RamMenuBoton 1_2: -6174718350065826824
+      RamMenuBoton 1_3: -5244578689733577702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
