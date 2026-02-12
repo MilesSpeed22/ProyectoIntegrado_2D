@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         canAttack = false;
         float actualSpeed = speed;
         speed = 0;
+        AudioManager.Instance.PlaySFX(3);
         anim.SetTrigger("Attack");
 
         yield return new WaitForSeconds(attackCooldown);

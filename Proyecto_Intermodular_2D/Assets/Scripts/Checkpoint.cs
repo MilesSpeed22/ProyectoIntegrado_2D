@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        anim.SetTrigger("Flash");
+        anim.SetTrigger("Blink");
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth == null ) return;
 
