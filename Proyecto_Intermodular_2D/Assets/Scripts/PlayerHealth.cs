@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -54,7 +55,8 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            GameOver();
+            StartCoroutine(GameOver());
+            //GameOver();
         }
 
     }
@@ -66,9 +68,16 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void GameOver()
+    //private void GameOver()
+    //{
+        //SceneManager.LoadScene(4);
+    //}
+
+    IEnumerator GameOver()
     {
-        SceneManager.LoadScene(5);
+        anim.SetTrigger("Death");
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene(4);
     }
 
     void UpdateHealthBar()
